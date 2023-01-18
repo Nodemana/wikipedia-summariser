@@ -1,9 +1,10 @@
 import requests
 from bs4 import BeautifulSoup
 import re
+import sys
 
 #Taking the URL input and validating using Regex
-URL = input("Enter a valid Wikipedia URL:\n")
+URL = sys.argv[1]
 urlRegex = re.compile(r"^https\:\/\/([\w\.]+)wikipedia.org\/wiki\/([\w]+\_?)+")
 mo = urlRegex.search(URL)
 if mo == None:
@@ -35,7 +36,7 @@ contents_container = soup.find_all("div", class_="toc")
 footer_container = soup.find_all("footer", id="footer")
 for container in references_container + footer_container + contents_container:
     container.decompose()
-
+print("RUNNING")
 for info in soup.descendants:
     if info.name == "span":
         try:

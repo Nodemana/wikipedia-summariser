@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-function extractParagraphs() {
+async function extractParagraphs() {
   return new Promise((resolve, reject) => {
     // Read the file as a string
     fs.readFile("temp.txt", "utf-8", (error, fileContent) => {
