@@ -25,7 +25,6 @@ page_title = soup.find("h1", class_="firstHeading").text
 
 #Making the text file to save the text data
 f = open("temp.txt", "w", encoding="utf-8")
-f.write(f"//{mo.group()}\n---{page_title}---\n\n")
 
 #Topics to avoid
 exclude = ["See also", "References", "Sources", "Further reading", "External links", "Bibliography", "Spoken word", "Notes", "Filmography", "Discography"]
@@ -43,7 +42,7 @@ for info in soup.descendants:
             if info["class"][0] == "mw-headline":
                 headline = info.get_text()
                 if headline not in exclude:
-                    f.write(f"\n{headline}:\n\n")
+                    f.write(f"\n{headline}:\n")
         except KeyError: #try except block to handle BS KeyError
             pass
     elif info.name in ["p"]:

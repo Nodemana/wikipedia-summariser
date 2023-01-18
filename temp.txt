@@ -1,14 +1,9 @@
-//https://en.wikipedia.org/wiki/Wu_Dao
----Wu Dao---
-
 Wu Dao (Chinese: 悟道; pinyin: wùdào; lit. 'road to awareness')[1] is a multimodal artificial intelligence developed by the Beijing Academy of Artificial Intelligence (BAAI).[2][3][4] Wu Dao 1.0 was first announced on January 11, 2021;[1][5] an improved version, Wu Dao 2.0, was announced on May 31.[6][5] It has been compared to GPT-3,[7] and is built on a similar architecture; in comparison, GPT-3 has 175 billion parameters[8][9] — variables and inputs within the machine learning model — while Wu Dao has 1.75 trillion parameters.[6][10] Wu Dao was trained on 4.9 terabytes of images and texts (which included 1.2 terabytes of Chinese text and 1.2 terabytes of English text).[6]
 [11] The chairman of BAAI said that Wu Dao was an attempt to "create the biggest, most powerful AI model possible";[8] although direct comparisons between models based on parameter count (i.e. between Wu Dao and GPT-3) do not directly correlate to quality.[9] Wu Dao 2.0, was called "the biggest language A.I. system yet".[4] It was interpreted by commenters as an attempt to "compete with the United States".[12][13]
 Wu Dao's creators demonstrated its ability to perform natural language processing and image recognition, in addition to generation of text and images.[5] The model can not only write essays, poems and couplets in traditional Chinese, it can both generate alt text based on a static image and generate nearly photorealistic images based on natural language descriptions. Wu Dao also showed off its ability to power virtual idols (with a little help from Microsoft-spinoff Xiaoice) and predict the 3D structures of proteins like AlphaFold.[5]
 
 History:
-
 Wu Dao's development began in October 2020, several months after the May 2020 release of GPT-3.[1] The first iteration of the model, Wu Dao 1.0, "initiated large-scale research projects"[14] via four related models.[15][14]
 
 WuDaoCorpora:
-
 WuDaoCorpora, as of version 2.0, was a large dataset constructed for training Wu Dao 2.0. It contains 3 terabytes of text scraped from web data, 90 terabytes of graphical data (incorporating 630 million text/image pairs), and 181 gigabytes of Chinese dialogue (incorporating 1.4 billion dialogue rounds).[16] Wu Dao 2.0 was trained using FastMoE, a variant of the mixture of experts architecture published by Google.[15] TheNextWeb said in June 2021 that "details as to exactly how Wu Dao was trained, what was in its various datasets, and what practical applications it can be used for remain scarce".[8] OpenAI's policy director called Wu Dao an example of "model diffusion", a neologism describing a situation in which multiple entities develop models similar to OpenAI's.[17]

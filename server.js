@@ -1,17 +1,17 @@
 const OpenAI = require('openai');
 const { Configuration, OpenAIApi } = OpenAI;
-const { PythonShell } = require("python-shell")
-
+const { PythonShell } = require("python-shell");
+const Queue  = require('bull');
 require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const fs = require('fs');
 const { extractParagraphs } = require('./extractParagraphs');
+const apiQueue = new Queue('gpt3');
 
 const app = express();
 const port = 3001;
-const limit = 450; //Token Conversation Limit
 
 const configuration = new Configuration({
   organization: process.env.OPENAI_ORG_KEY,
@@ -19,6 +19,19 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
+apiQueue.process(async (job) => {
+  const response = await openai.createCompletion({
+    model: "text-davinci-003",
+    prompt: `${job.data.text}`,
+    temperature: 0.9,
+    max_tokens: 1000,
+    top_p: 0.9,
+    frequency_penalty: 1.5,
+    presence_penalty: 2,
+  });
+  MemoryStore(response.data.choices[0].text);
+  done();
+})
 
 function MemoryStore(line){
     console.log("MemoryStore");
@@ -46,6 +59,13 @@ const removeLines = (data, lines = []) => {
         .filter((val, idx) => lines.indexOf(idx) === -1)
         .join('\n');
   }
+  fs.writeFile('temp.txt', "", (err) => {
+    if (err) {
+      console.error(err);
+      return;
+    };
+  });
+
   fs.writeFile('summary.txt', "Summarise the following wikipedia page:\n", (err) => {
     if (err) {
       console.error(err);
@@ -79,23 +99,15 @@ app.post('/', async (req, res) => {
     if (paragraphs.length != 0){
       for (const para of paragraphs){
         console.log(para + "\n")
-        const response = await openai.createCompletion({
-          model: "text-davinci-003",
-          prompt: `${para}`,
-          temperature: 0.9,
-          max_tokens: 1000,
-          top_p: 0.9,
-          frequency_penalty: 1.5,
-          presence_penalty: 2,
-        });
+        apiQueue.add({text: para});
       }
     }
-    MemoryStore(response.data.choices[0].text);
-    if(response.data.choices){
+    
+   /* if(response.data.choices){
             res.json({
                 message: response.data.choices[0].text
             });
-          }
+          }*/
 });
 
 app.listen(port, () => {
