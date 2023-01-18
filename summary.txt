@@ -1,1 +1,34 @@
 Summarise the following wikipedia page:
+
+
+Computing is a broad field of study which involves the use of computers and computer software to process information, create programs, store data and solve problems. It encompasses fields such as artificial intelligence (AI), robotics, programming languages like Java or Python, machine learning algorithms for automated decision-making systems, networks and databases.
+
+Computing is a wide area involving using computers and their related technology to manipulate information, design applications/programs , conserve records and tackle issues. It includes domains such as AI; Robotics; Programming Languages e.g.,Java &Python ; Machine Learning models for self governing determination techniques; Networks & Databases etc..
+
+Biology is the study of life, exploring a wide range of scales from sub-cellular mechanisms to large-scale ecosystems. It encompasses topics such as genetics, ecology, physiology and evolution which are used to understand how organisms function at both an individual level and in populations.
+
+Biology is the scientific field dedicated to understanding living systems on all levels - from single cells up through entire ecosystems. It investigates genetic structures, physiological processes, ecological interactions and evolutionary patterns that influence organism behaviour individually or within groups.
+
+Companies are essential parts of society, allowing individuals and organisations to collaborate in the production of goods or services. They provide employees with an income while contributing significantly to economies around the world. Companies also offer opportunities for innovation and investment that benefit consumers as well as producers by making products more affordable. 
+
+Companies play a vital role in society by enabling collaboration between people and organizations which produces goods/services; they give employment opportunities, contribute greatly to global economy, drive innovation & investments which lead to cost-effective products for everyone's benefit.
+
+Apart from being used as a fuel in vehicles, petrol can also be used for other purposes. It is widely used in industry and manufacturing where it serves to power tools like chainsaws or lawnmowers. Additionally, its fumes are often present at many construction sites due to the presence of machinery that runs on petrol and helps workers complete their jobs faster. 
+
+Petrol has various uses beyond just fuelling cars; it is frequently employed by industries and manufacturers to run tools such as chainsaws or lawn mowers, while its fumes are commonplace on construction sites due to machines which use it helping speed up work processes.
+
+Computing is the use of computers to store, retrieve, transmit and manipulate data or information. It involves a variety of topics such as computer programming, networking, database management systems and software engineering. Computing also provides for specialized fields like artificial intelligence (AI), machine learning (ML) and robotics.
+
+Computing is the utilization of computers to store, access, send and process data or info. It includes various areas including computer programming , network configuration , databases administration programs & software development . Additionally it comprises specialised domains e.g AI , ML & Robotics .
+
+Biology is the study of living organisms, from single-celled amoebas to complex multicellular plants and animals. It looks at how these organisms interact with each other, their environment and our planet as a whole. Biology investigates physical structure, chemical processes, molecular interactions and evolutionary history in order to understand how all life forms are connected on Earth. 
+
+Biology is the scientific study of living things including both single-celled amoebas and multi-cellular plants/animals that examines physical characteristics, chemical composition & processes; molecular connections; as well as evolutionary relationships among species across Earth's ecosystems.
+
+This paragraph discusses the importance of companies to society. Companies provide necessary goods and services, create jobs for individuals and generate tax revenue for governments. They are also integral in advancing technology which can lead to positive societal changes. In addition, they stimulate economic growth by providing resources that help businesses become competitive in their industries as well as encouraging innovation. 
+
+Companies play an important role in modern society by providing essential goods and services, creating employment opportunities, generating taxes for government use and driving technological advancement with potential beneficial impacts on our lives; they also contribute significantly to economic development through supplying resources necessary for business competition & nurturing new ideas & innovations
+
+Tetrahydrocannabinol, or THC, is the primary psychoactive component of cannabis and has many potential medical uses. It can be used to treat chronic pain and reduce nausea in cancer patients going through chemotherapy. Other studies have shown that it may help improve sleep for those with insomnia as well as provide relief from muscle spasms associated with multiple sclerosis. 
+
+THC is a psychoactive component of cannabis which can potentially be used medicinally to treat chronic pain, reduce nausea in cancer patients undergoing chemo therapy, aid sleeping issues due to insomnia and alleviate symptoms related to multiple sclerosis such as muscle spasms.

@@ -19,7 +19,32 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
-apiQueue.process(async (job) => {
+async function ProcessAPIcalls(inputs){
+  if (inputs.length != 0){
+    for (const para of inputs){
+      if (para != ""){
+        console.log("Job")
+        const input = "Summarise the following paragraph: " + para;
+        console.log(input)
+        const response = await openai.createCompletion({
+          model: "text-davinci-003",
+          prompt: `${input}`,
+          temperature: 0.9,
+          max_tokens: 1000,
+          top_p: 0.9,
+          frequency_penalty: 1.5,
+          presence_penalty: 2,
+        });
+        MemoryStore(response.data.choices[0].text)
+      }
+  
+    }
+  }
+  console.log("Jobs Complete")
+}
+/*
+apiQueue.process(async (job, done) => {
+  console.log("Job")
   const response = await openai.createCompletion({
     model: "text-davinci-003",
     prompt: `${job.data.text}`,
@@ -31,7 +56,7 @@ apiQueue.process(async (job) => {
   });
   MemoryStore(response.data.choices[0].text);
   done();
-})
+}) */
 
 function MemoryStore(line){
     console.log("MemoryStore");
@@ -96,18 +121,7 @@ app.post('/', async (req, res) => {
     await handleRunScript(message)
     const paragraphs = await extractParagraphs()
     //console.log(paragraphs)
-    if (paragraphs.length != 0){
-      for (const para of paragraphs){
-        console.log(para + "\n")
-        apiQueue.add({text: para});
-      }
-    }
-    
-   /* if(response.data.choices){
-            res.json({
-                message: response.data.choices[0].text
-            });
-          }*/
+    ProcessAPIcalls(paragraphs)
 });
 
 app.listen(port, () => {
