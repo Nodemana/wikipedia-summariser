@@ -24,6 +24,7 @@ function App() {
   return (
     <div className="App">
       <header>GPT3 Wikipedia Summariser</header>
+      <p>Please enter a title of a wikipedia article surrounded by quotations eg "title"</p>
       <form style={{
         marginTop:"10px",
         alignContent:"center"}}onSubmit={handleSubmit}>

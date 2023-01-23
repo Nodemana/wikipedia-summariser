@@ -5,6 +5,7 @@ import sys
 
 #Taking the URL input and validating using Regex
 URL = sys.argv[1]
+print(URL)
 urlRegex = re.compile(r"^https\:\/\/([\w\.]+)wikipedia.org\/wiki\/([\w]+\_?)+")
 mo = urlRegex.search(URL)
 if mo == None:
@@ -27,7 +28,8 @@ page_title = soup.find("h1", class_="firstHeading").text
 f = open("temp.txt", "w", encoding="utf-8")
 
 #Topics to avoid
-exclude = ["See also", "References", "Sources", "Further reading", "External links", "Bibliography", "Spoken word", "Notes", "Filmography", "Discography"]
+exclude = []
+#exclude = ["See also", "References", "Sources", "Further reading", "External links", "Bibliography", "Spoken word", "Notes", "Filmography", "Discography"]
 
 # Exclude the references container from the soup
 references_container = soup.find_all("div", class_="reflist")
@@ -45,7 +47,7 @@ for info in soup.descendants:
                     f.write(f"\n{headline}:\n")
         except KeyError: #try except block to handle BS KeyError
             pass
-    elif info.name in ["p"]:
+    elif info.name == "p":
         para = info.get_text()
         f.write(f"{para}")
 f.close() #Closing the file

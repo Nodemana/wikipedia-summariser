@@ -19,44 +19,41 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
-async function ProcessAPIcalls(inputs){
-  if (inputs.length != 0){
-    for (const para of inputs){
-      if (para != ""){
-        console.log("Job")
-        const input = "Summarise the following paragraph: " + para;
-        console.log(input)
-        const response = await openai.createCompletion({
-          model: "text-davinci-003",
-          prompt: `${input}`,
-          temperature: 0.9,
-          max_tokens: 1000,
-          top_p: 0.9,
-          frequency_penalty: 1.5,
-          presence_penalty: 2,
-        });
-        MemoryStore(response.data.choices[0].text)
-      }
-  
-    }
-  }
-  console.log("Jobs Complete")
-}
-/*
-apiQueue.process(async (job, done) => {
-  console.log("Job")
-  const response = await openai.createCompletion({
-    model: "text-davinci-003",
-    prompt: `${job.data.text}`,
-    temperature: 0.9,
-    max_tokens: 1000,
-    top_p: 0.9,
-    frequency_penalty: 1.5,
-    presence_penalty: 2,
+async function ProcessAPIcalls(res){
+  fs.writeFile('summary.txt', "", (err) => {
+    if (err) {
+      console.error(err);
+      return;
+    };
   });
-  MemoryStore(response.data.choices[0].text);
-  done();
-}) */
+  var summary = []
+  var output = ""
+  var count = 0
+  while (fs.existsSync("temp/temp" + count + ".txt")){
+    var input = await MemoryRetrieve("temp/temp" + count + ".txt")
+    console.log("input:")
+    console.log(input)
+    const response = await openai.createCompletion({
+      model: "text-davinci-003",
+      prompt: `${input}`,
+      temperature: 0.9,
+      max_tokens: 1000,
+      top_p: 0.9,
+      frequency_penalty: 1.5,
+      presence_penalty: 2,
+    });
+    MemoryStore(response.data.choices[0].text)
+    summary.push(response.data.choices[0].text)
+    count += 1
+  }
+  var output = summary.join("\n")
+  console.log(output)
+  res.json({
+    message: output.toString()
+  });
+  console.log("Jobs Complete")
+
+}
 
 function MemoryStore(line){
     console.log("MemoryStore");
@@ -68,10 +65,10 @@ function MemoryStore(line){
     })
   }
 
-async function MemoryRetrieve(){
+async function MemoryRetrieve(file){
     let fileContent;
     try {
-        fileContent = await fs.promises.readFile('summary.txt', 'utf8');
+        fileContent = await fs.promises.readFile(file, 'utf8');
     } catch (err) {
         console.error(err);
     }
@@ -84,19 +81,19 @@ const removeLines = (data, lines = []) => {
         .filter((val, idx) => lines.indexOf(idx) === -1)
         .join('\n');
   }
-  fs.writeFile('temp.txt', "", (err) => {
-    if (err) {
-      console.error(err);
-      return;
-    };
-  });
 
-  fs.writeFile('summary.txt', "Summarise the following wikipedia page:\n", (err) => {
-    if (err) {
-      console.error(err);
-      return;
-    };
-  });
+ function article_clean(file){
+    var content = MemoryRetrieve(file)
+    
+        // remove the first line and the 5th and 6th lines in the file
+        fs.writeFile(file, removeLines(content, [0,1,2,3,4,5]), 'utf8', function(err) {
+            if (err) throw err;
+            console.log("the lines have been removed.");
+        });
+    }
+
+  //CLEANING TEXT FILES BEFORE USE
+  
   
   async function handleRunScript(input) {
     return new Promise((resolve, reject) => {
@@ -104,7 +101,7 @@ const removeLines = (data, lines = []) => {
         scriptPath: "",
         args: [input]
       };
-      PythonShell.run("scraper.py", options, (err, res) =>{
+      PythonShell.run("scraper_two.py", options, (err, res) =>{
         console.log("Script is:")
         if (err) reject(err)
         if (res) resolve(res)
@@ -119,9 +116,7 @@ app.use(cors());
 app.post('/', async (req, res) => {
     const { message } = req.body;
     await handleRunScript(message)
-    const paragraphs = await extractParagraphs()
-    //console.log(paragraphs)
-    ProcessAPIcalls(paragraphs)
+    await ProcessAPIcalls(res)
 });
 
 app.listen(port, () => {
